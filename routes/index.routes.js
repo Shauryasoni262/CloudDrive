@@ -4,6 +4,10 @@ const router = express.Router();
 const upload = require('./upload');
 const fileModel = require('../models/files.models')
 
+router.get('/', (req, res) => {
+  res.redirect('/user/register');
+});
+
 router.get('/home', authMiddleware, async (req, res) => {
   const userFiles = await fileModel.find({
 user:req.user.userId
