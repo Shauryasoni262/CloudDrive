@@ -5,6 +5,9 @@ const userModel = require('../models/user.model')
 const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken")
 
+router.get('/', (req, res) => {
+  res.redirect('/user/register');
+});
 
 router.get('/register', (req,res) => {
     res.render("register")
