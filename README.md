@@ -36,3 +36,86 @@ CloudDrive is a secure and minimal file storage web application built using Node
 git clone https://github.com/yourusername/clouddrive.git
 cd clouddrive
 npm install
+```
+
+Create a `.env` file and add:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
+
+---
+
+## ▶️ Usage
+
+### 🔐 Register & Login
+
+- `POST /auth/register`  
+  Register a new user with `username`, `email`, and `password`.
+
+- `POST /auth/login`  
+  Authenticate user and receive a JWT token.
+
+### 📁 File Upload
+
+- `POST /upload`  
+  - **Headers:** `Authorization: Bearer <token>`  
+  - **FormData:** `file` (your file input field)  
+  - Uploads file to Cloudinary and stores metadata in MongoDB.
+
+### 📥 File Download
+
+- `GET /download/:path`  
+  - Validates token and ownership  
+  - Returns a signed Cloudinary URL for temporary file access
+
+---
+
+## 🧠 Project Structure
+
+```
+├── models
+│   └── users.models.js
+│   └── files.models.js
+├── routes
+│   └── auth.routes.js
+│   └── upload.routes.js
+├── middlewares
+│   └── authe.js
+├── config
+│   └── cloudinary.js
+├── .env
+├── app.js
+└── README.md
+```
+
+---
+
+## 📌 Important Notes
+
+- Passwords are hashed securely before storage using `bcrypt`.
+- Only authenticated users can upload and access files.
+- Each file is linked to a specific user using their unique ID.
+- File downloads use **Cloudinary's signed URLs**, ensuring security.
+
+---
+
+## 📚 Future Improvements
+
+- Add frontend UI using React or HTML/CSS
+- File previews (images, PDFs)
+- Delete files
+- Rename or organize files in folders
+- File size restrictions
+
+---
+
+## 🙋‍♂️ Author
+
+**Shaurya Soni**  
+Feel free to connect or contribute!
