@@ -4,7 +4,7 @@ function connectToDB() {
   mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    ssl: true // Optional: helps with MongoDB Atlas on some platforms
+    ssl: true
   })
   .then(() => {
     console.log("✅ MongoDB connected successfully");

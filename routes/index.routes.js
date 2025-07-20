@@ -33,7 +33,6 @@ res.json(newFile)
 
 router.get('/download/:path', authMiddleware,async (req,res) => {
 const loggedIduserId = req.user.userId
-//const path = req.params.path
 const path = decodeURIComponent(req.params.path)
 
 const file = await fileModel.findOne({
@@ -47,13 +46,6 @@ if(!file){
   })  
 }
 
-/*
-const signedUrl = await firebase.storage().bucket().file(path).getSignedUrl({
-    action: 'read',
-    expires: Date.now() + 60*1000
-})
-res.redirect(signedurl[ 0 ])
-*/
  res.redirect(file.path);
 })
 
